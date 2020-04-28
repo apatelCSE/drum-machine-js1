@@ -1,2 +1,3 @@
-# drum-machine-js1
-Day 1 of Wes Bos's Javascript 30
+<h1>Random Piano</h1>
+
+<p>I created a modified version of the drum kit from Wes Bos' Javascript 30 curriculum. The site plays random piano keys as the user types.</p>

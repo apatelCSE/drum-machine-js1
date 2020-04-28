@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
+  <title>Online Piano</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-
-  <div class="keys">
     <div data-key="81" class="key">
       <kbd>Q</kbd>
       <span class="sound"></span>
@@ -113,42 +111,66 @@
       <kbd>M</kbd>
       <span class="sound"></span>
     </div>
-  </div>
+    <div data-key="32" class="key">
+      <kbd> </kbd>
+      <span class="sound"></span>
+    </div>    
 
-  <audio data-key="81" src="sounds/A0.ogg"></audio>
-  <audio data-key="87" src="sounds/B0.ogg"></audio>
-  <audio data-key="69" src="sounds/C1.ogg"></audio>
-  <audio data-key="82" src="sounds/D1.ogg"></audio>
-  <audio data-key="84" src="sounds/E1.ogg"></audio>
-  <audio data-key="89" src="sounds/F1.ogg"></audio>
-  <audio data-key="85" src="sounds/G1.ogg"></audio>
-  <audio data-key="73" src="sounds/Aa0.ogg"></audio>
-  <audio data-key="79" src="sounds/Ca1.ogg"></audio>
-  <audio data-key="80" src="sounds/Da1.ogg"></audio>
-  <audio data-key="65" src="sounds/Fa1.ogg"></audio>
-  <audio data-key="83" src="sounds/Ga1.ogg"></audio>
-  <audio data-key="68" src="sounds/A1.ogg"></audio>
-  <audio data-key="70" src="sounds/B1.ogg"></audio>
-  <audio data-key="71" src="sounds/C2.ogg"></audio>
-  <audio data-key="72" src="sounds/D2.ogg"></audio>
-  <audio data-key="74" src="sounds/E2.ogg"></audio>
-  <audio data-key="75" src="sounds/F2.ogg"></audio>
-  <audio data-key="76" src="sounds/G2.ogg"></audio>
-  <audio data-key="90" src="sounds/Aa1.ogg"></audio>
-  <audio data-key="88" src="sounds/Ca2.ogg"></audio>
-  <audio data-key="67" src="sounds/Da2.ogg"></audio>
-  <audio data-key="86" src="sounds/Fa2.ogg"></audio>
-  <audio data-key="66" src="sounds/Ga2.ogg"></audio>
-  <audio data-key="78" src="sounds/A2.ogg"></audio>
-  <audio data-key="77" src="sounds/B2.ogg"></audio>
+
+  <audio data-key="81" src="sounds/A5.ogg"></audio>
+  <audio data-key="87" src="sounds/B4.ogg"></audio>
+  <audio data-key="69" src="sounds/C4.ogg"></audio>
+  <audio data-key="82" src="sounds/D4.ogg"></audio>
+  <audio data-key="84" src="sounds/E3.ogg"></audio>
+  <audio data-key="89" src="sounds/F5.ogg"></audio>
+  <audio data-key="85" src="sounds/G3.ogg"></audio>
+  <audio data-key="73" src="sounds/Aa3.ogg"></audio>
+  <audio data-key="79" src="sounds/Ca4.ogg"></audio>
+  <audio data-key="80" src="sounds/Da2.ogg"></audio>
+  <audio data-key="65" src="sounds/Fa3.ogg"></audio>
+  <audio data-key="83" src="sounds/Ga4.ogg"></audio>
+  <audio data-key="68" src="sounds/A4.ogg"></audio>
+  <audio data-key="70" src="sounds/B3.ogg"></audio>
+  <audio data-key="71" src="sounds/C5.ogg"></audio>
+  <audio data-key="72" src="sounds/D3.ogg"></audio>
+  <audio data-key="74" src="sounds/E4.ogg"></audio>
+  <audio data-key="75" src="sounds/F4.ogg"></audio>
+  <audio data-key="76" src="sounds/G4.ogg"></audio>
+  <audio data-key="90" src="sounds/Aa2.ogg"></audio>
+  <audio data-key="88" src="sounds/Ca3.ogg"></audio>
+  <audio data-key="67" src="sounds/Da3.ogg"></audio>
+  <audio data-key="86" src="sounds/Fa4.ogg"></audio>
+  <audio data-key="66" src="sounds/Ga3.ogg"></audio>
+  <audio data-key="78" src="sounds/A3.ogg"></audio>
+  <audio data-key="77" src="sounds/B5.ogg"></audio>
+  <audio data-key="32" src="sounds/C3.ogg"></audio>
 
 <script>
-  window.addEventListener('keydown', function(e) {
-    const audio = document.querySelector(`audio[data-key="{e.keycode}"]`);
-    if(!audio) return;
+  const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);    
+    if(!audio) return; // invalid key is played
+    audio.currentTime = 0; // rewind to start, allows key replay
     audio.play();
-  
-  });
+    key.style.display = "block";
+    key.style.top = Math.floor((Math.random() * vh) + 1);
+    key.style.left = Math.floor((Math.random() * vw) + 1);
+    key.classList.add('playing'); //also toggle or remove
+  }
+
+  function removeTransition(e) {
+    if(e.propertyName !== 'transform') return //skip if not a prop name
+    this.classList.remove('playing');
+  }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+  window.addEventListener('keydown', playSound);
 </script>
 
 
