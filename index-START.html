@@ -133,8 +133,11 @@
     if(!audio) return; // invalid key is played
     audio.currentTime = 0; // rewind to start, allows key replay
     var coords = getRandomPosition(key);
-    document.getElementsByClassName('key').style.top = coords[0] + 'px';
-    document.getElementsByClassName('key').style.left = coords[1] + 'px';
+    key.style.cssText += 'height: 50px; width: 50px; z-index: 1;';
+    key.style.cssText += 'position: absolute; border-radius: 50%;';
+    key.style.top = coords[0] + 'px';
+    key.style.left = coords[1] + 'px';
+    key.style.color = 'yellow';
 
     audio.play();
   }
