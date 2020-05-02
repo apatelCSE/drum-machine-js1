@@ -1,6 +1,6 @@
 html {
   font-size: 10px;
-  background-color: darkblue;
+  background-color: black;
 }
 
 body,html {
@@ -9,9 +9,16 @@ body,html {
   font-family: sans-serif;
 }
 
-.key {
+.playing {
+  height: 50px;
+  width: 50px;
   position: absolute;
-  transition: all 2s ease;
-  z-index: 1;
-  border: darkblue;
+  background-color: cyan;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px 10px black inset;
+}
+
+.key {
+  transition: all 1s ease;
 }

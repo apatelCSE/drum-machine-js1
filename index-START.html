@@ -6,87 +6,86 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div data-key="81" class="key">
-      <span class="sound"></span>
+      <span data-key="81" class="sound"></span>
     </div>
     <div data-key="87" class="key">
-      <span class="sound"></span>
+      <span data-key="87" class="sound"></span>
     </div>
     <div data-key="69" class="key">
-      <span class="sound"></span>
+      <span data-key="69" class="sound"></span>
     </div>
     <div data-key="82" class="key">
-      <span class="sound"></span>
+      <span data-key="82" class="sound"></span>
     </div>
     <div data-key="84" class="key">
-      <span class="sound"></span>
+      <span data-key="84" class="sound"></span>
     </div>
     <div data-key="89" class="key">
-      <span class="sound"></span>
+      <span data-key="89" class="sound"></span>
     </div>
     <div data-key="85" class="key">
-      <span class="sound"></span>
+      <span data-key="85" class="sound"></span>
     </div>
     <div data-key="73" class="key">
-      <span class="sound"></span>
+      <span data-key="73" class="sound"></span>
     </div>
     <div data-key="79" class="key">
-      <span class="sound"></span>
+      <span data-key="79" class="sound"></span>
     </div>
     <div data-key="80" class="key">
-      <span class="sound"></span>
+      <span data-key="80" class="sound"></span>
     </div>
     <div data-key="65" class="key">
-      <span class="sound"></span>
+      <span data-key="65" class="sound"></span>
     </div>
     <div data-key="83" class="key">
-      <span class="sound"></span>
+      <span data-key="83" class="sound"></span>
     </div>
     <div data-key="68" class="key">
-      <span class="sound"></span>
+      <span data-key="68" class="sound"></span>
     </div>
     <div data-key="70" class="key">
-      <span class="sound"></span>
+      <span data-key="70" class="sound"></span>
     </div>
     <div data-key="71" class="key">
-      <span class="sound"></span>
+      <span data-key="71" class="sound"></span>
     </div>
     <div data-key="72" class="key">
-      <span class="sound"></span>
+      <span data-key="72" class="sound"></span>
     </div>
     <div data-key="74" class="key">
-      <span class="sound"></span>
+      <span data-key="74" class="sound"></span>
     </div>
     <div data-key="75" class="key">
-      <span class="sound"></span>
+      <span data-key="75" class="sound"></span>
     </div>
     <div data-key="76" class="key">
-      <span class="sound"></span>
+      <span data-key="76" class="sound"></span>
     </div>
     <div data-key="90" class="key">
-      <span class="sound"></span>
+      <span data-key="90" class="sound"></span>
     </div>
     <div data-key="88" class="key">
-      <span class="sound"></span>
+      <span data-key="88" class="sound"></span>
     </div>
     <div data-key="67" class="key">
-      <span class="sound"></span>
+      <span data-key="67" class="sound"></span>
     </div>
     <div data-key="86" class="key">
-      <span class="sound"></span>
+      <span data-key="86" class="sound"></span>
     </div>
     <div data-key="66" class="key">
-      <span class="sound"></span>
+      <span data-key="66" class="sound"></span>
     </div>
     <div data-key="78" class="key">
-      <span class="sound"></span>
+      <span data-key="78" class="sound"></span>
     </div>
     <div data-key="77" class="key">
-      <span class="sound"></span>
+      <span data-key="77" class="sound"></span>
     </div>
     <div data-key="32" class="key">
-      <span class="sound"></span>
+      <span data-key="32" class="sound"></span>
     </div>    
 
 
@@ -133,18 +132,19 @@
     if(!audio) return; // invalid key is played
     audio.currentTime = 0; // rewind to start, allows key replay
     var coords = getRandomPosition(key);
-    key.style.cssText += 'height: 50px; width: 50px; z-index: 1;';
-    key.style.cssText += 'position: absolute; border-radius: 50%;';
-    key.style.top = coords[0] + 'px';
-    key.style.left = coords[1] + 'px';
-    key.style.color = 'yellow';
+    const note = document.querySelector(`.sound[data-key="${e.keyCode}"]`);
+    note.classList.add('playing');
+
+    note.style.top = coords[0] + 'px';
+    note.style.left = coords[1] + 'px';
 
     audio.play();
   }
 
   function removeTransition(e) {
     if(e.propertyName !== 'transform') return //skip if not a prop name
-    this.classList.remove('playing');
+    const note = document.querySelector(`.sound[data-key="${e.keyCode}"]`);
+    note.classList.remove('playing');
   }
 
   const keys = document.querySelectorAll('.key');
