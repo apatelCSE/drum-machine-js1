@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 html {
   font-size: 10px;
   background-color: black;
@@ -9,7 +11,69 @@ body,html {
   font-family: sans-serif;
 }
 
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 8vw;
+  padding: 50px;
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.fade-out {
+  animation: fadeOut ease 1s;
+  -webkit-animation: fadeOut ease 1s;
+  -moz-animation: fadeOut ease 1s;
+  -o-animation: fadeOut ease 1s;
+  -ms-animation: fadeOut ease 1s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
 .playing {
+  z-index: 1;
   height: 50px;
   width: 50px;
   position: absolute;
@@ -18,7 +82,7 @@ body,html {
   display: inline-block;
   box-shadow: 0 0 10px 10px black inset;
 }
-
+/* 
 .key {
   transition: all 1s ease;
-}
+} */
