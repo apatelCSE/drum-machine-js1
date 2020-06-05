@@ -11,13 +11,13 @@ body,html {
   font-family: sans-serif;
 }
 
-h1 {
+.header {
   font-family: 'Open Sans', sans-serif;
   font-size: 8vw;
   padding: 50px;
   text-align: center;
   color: white;
-  z-index: 10;
+  position: relative;
 }
 
 .fade-out {
@@ -33,6 +33,7 @@ h1 {
   }
   100% {
     opacity:0;
+    visibility: hidden;
   }
 }
 
@@ -42,6 +43,7 @@ h1 {
   }
   100% {
     opacity:0;
+    visibility: hidden;
   }
 }
 
@@ -51,6 +53,7 @@ h1 {
   }
   100% {
     opacity:0;
+    visibility: hidden;
   }
 }
 
@@ -60,6 +63,7 @@ h1 {
   }
   100% {
     opacity:0;
+    visibility: hidden;
   }
 }
 
@@ -69,11 +73,14 @@ h1 {
   }
   100% {
     opacity:0;
+    visibility: hidden;
   }
 }
 
 .playing {
-  z-index: 1;
+  z-index: -1;
+  top: 0px;
+  left: 0px;
   height: 50px;
   width: 50px;
   position: absolute;
@@ -82,7 +89,3 @@ h1 {
   display: inline-block;
   box-shadow: 0 0 10px 10px black inset;
 }
-/* 
-.key {
-  transition: all 1s ease;
-} */
